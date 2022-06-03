@@ -30,5 +30,5 @@ In your YAML config file add a new generated file with this plugin as stated:
 generates:
   src/generated/types.js:
     plugins:
-      - @lfgroup/codegen-js-converter
+      - '@lfgroup/codegen-js-converter'
 ```
