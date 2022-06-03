@@ -16,10 +16,10 @@ function getEnumTypeMap(schema: GraphQLSchema): GraphQLEnumType[] {
 function buildArrayDefinition(e: GraphQLEnumType): string {
   const values = e
     .getValues()
-    .map((v) => `{'${v.value}': '${v.value}'}`)
+    .map((v) => `'${v.value}': '${v.value}'`)
     .join(", ");
 
-  return `export const ${e.name} = [${values}];`;
+  return `export const ${e.name} = {${values}};`;
 }
 
 function buildImportStatement(
