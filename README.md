@@ -1,6 +1,6 @@
 # @lfgroup/codegen-js-converter
 
-A `graphql-codegen` plugin, that converts enums from client schema to a JS objects.
+Micro (1.8 kB) `graphql-codegen` plugin, that converts enums from client schema to a JS objects.
 
 ### Usage
 
