@@ -17,9 +17,9 @@ function buildArrayDefinition(e: GraphQLEnumType): string {
   const values = e
     .getValues()
     .map((v) => `'${v.value}': '${v.value}'`)
-    .join(", ");
+    .join(", \n");
 
-  return `export const ${e.name} = {${values}};`;
+  return `'${e.name}': {${values}}`;
 }
 
 function buildImportStatement(
@@ -38,8 +38,9 @@ export const plugin: PluginFunction<EnumArrayPluginConfig> = async (
 ): Promise<Types.PluginOutput> => {
   const importFrom: EnumArrayPluginConfig["importFrom"] = config.importFrom;
   const enums = getEnumTypeMap(schema);
-  const content = enums.map(buildArrayDefinition).join("\n");
+  const data = enums.map(buildArrayDefinition).join(", \n");
 
+  const content = `module.exports = {\n${data}};`;
   const result: Types.PluginOutput = { content };
   if (importFrom) {
     result["prepend"] = buildImportStatement(enums, importFrom);
